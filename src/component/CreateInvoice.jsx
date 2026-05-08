@@ -10,6 +10,8 @@ function CreateInvoice() {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [gstnum, setGstnum] = useState("");
   const [company, setCompany] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [items, setItems] = useState([]);
   const [gst, setGst] = useState(false);
   const [discount, setDiscount] = useState(0);
@@ -24,6 +26,8 @@ function CreateInvoice() {
       setClient(editData.client.name);
       setCompany(editData.client.company);
       setGstnum(editData.client.gstNumber);
+      setPhone(editData.client.phone);
+      setEmail(editData.client.email);
       setDate(new Date(editData.date).toISOString().split("T")[0]);
       setItems(editData.items);
       setStatus(editData.status);
@@ -50,6 +54,8 @@ function CreateInvoice() {
         client,
         gstnum,
         company,
+        phone,
+        email,
         items,
         subtotal,
         gstAmount,
@@ -74,6 +80,8 @@ function CreateInvoice() {
       client,
       company,
       gstnum,
+      phone,
+      email,
       date,
       status,
       items,
@@ -122,7 +130,7 @@ function CreateInvoice() {
 
       {error && <div className="text-red-500 mb-3">{error}</div>}
 
-      <div className="bg-white p-4 rounded-xl shadow mb-4  flex gap-10">
+      <div className="bg-white p-4 rounded-xl shadow mb-4 flex flex-wrap gap-4">
         <input
           placeholder="Client Name"
           className="border p-2 rounded"
@@ -146,6 +154,18 @@ function CreateInvoice() {
           className="border p-2 rounded"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
+        />
+        <input
+          placeholder="Phone"
+          className="border p-2 rounded"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+        <input
+          placeholder="Email"
+          className="border p-2 rounded"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <select
           className="border p-2 rounded"
